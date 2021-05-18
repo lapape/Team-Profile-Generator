@@ -133,7 +133,7 @@ function askIntern() {
     .then((data) => {
       //figure out how to take those responses from the user and write them to a file
       const intern = new Intern(data.name, data.id, data.email, data.school);
-      teamMembers.push(engineer);
+      teamMembers.push(intern);
     })
     .then(askAdd);
 }

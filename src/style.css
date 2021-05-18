@@ -1,12 +1,6 @@
-h1 {
-  background-color: burlywood;
+header {
+  background-color: rgb(102, 22, 22);
   text-align: center;
-}
-
-.card-title {
-  background-color: cornflowerblue;
-}
-
-.card-text {
-  border: 3px gray solid;
+  width: 100%;
+  color: white;
 }

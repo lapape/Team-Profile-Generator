@@ -1,0 +1,11 @@
+header {
+  background-color: rgb(102, 22, 22);
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}

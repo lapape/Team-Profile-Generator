@@ -1,9 +1,10 @@
 const fs = require("fs");
+const path = require("path");
 const inquirer = require("inquirer");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const Manager = require("./lib/Manager");
-const generateMarkdown = require("./generateMarkdown");
+const Engineer = require("./lib/Engineer.js");
+const Intern = require("./lib/Intern.js");
+const Manager = require("./lib/Manager.js");
+const generateMarkdown = require("./generateMarkdown.js");
 const teamMembers = [];
 
 const managerQuestions = [
@@ -91,14 +92,12 @@ function writeToFile(fileName, data) {
 }
 
 function init() {
-  inquirer
-    .prompt(managerQuestions)
-    .then((data) => {
-      //figure out how to take those responses from the user and write them to a file
-      const manager = new Manager(data.name, data.id, data.email, data.office);
-      teamMembers.push(manager);
-    })
-    .then(askAdd);
+  inquirer.prompt(managerQuestions).then((data) => {
+    //figure out how to take those responses from the user and write them to a file
+    const manager = new Manager(data.name, data.id, data.email, data.office);
+    teamMembers.push(manager);
+    askAdd();
+  });
 }
 
 function askAdd() {
@@ -108,35 +107,27 @@ function askAdd() {
     } else if (data.add === "Intern") {
       askIntern();
     } else {
-      writeToFile();
+      console.log(teamMembers);
+      writeToFile("index.html", generateMarkdown(teamMembers));
     }
   });
 }
 function askEngineer() {
-  inquirer
-    .prompt(engineerQuestions)
-    .then((data) => {
-      //figure out how to take those responses from the user and write them to a file
-      const engineer = new Engineer(
-        data.name,
-        data.id,
-        data.email,
-        data.github
-      );
-      teamMembers.push(engineer);
-    })
-    .then(askAdd);
+  inquirer.prompt(engineerQuestions).then((data) => {
+    //figure out how to take those responses from the user and write them to a file
+    const engineer = new Engineer(data.name, data.id, data.email, data.github);
+    teamMembers.push(engineer);
+    askAdd();
+  });
 }
 function askIntern() {
-  inquirer
-    .prompt(internQuestions)
-    .then((data) => {
-      //figure out how to take those responses from the user and write them to a file
-      const intern = new Intern(data.name, data.id, data.email, data.school);
-      teamMembers.push(intern);
-    })
-    .then(askAdd);
+  inquirer.prompt(internQuestions).then((data) => {
+    //figure out how to take those responses from the user and write them to a file
+    const intern = new Intern(data.name, data.id, data.email, data.school);
+    teamMembers.push(intern);
+    askAdd();
+  });
 }
-writeToFile("index.html", generateMarkdown(data));
+
 // Function call to initialize app
 init();

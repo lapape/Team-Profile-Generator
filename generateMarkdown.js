@@ -4,7 +4,9 @@ function renderManager(teamMembers) {
   <div class="card-header">Manager: ${teamMembers[0].name}</div>
   <div class="card-body">
     <p class="card-text">ID: ${teamMembers[0].id}</p>
-    <p class="card-text">Email: ${teamMembers[0].getEmail()}</p>
+    <p class="card-text">Email: <a href="mailto:${teamMembers[0].email}">${
+    teamMembers[0].email
+  }</a></p>
     <p class="card-text">Office number: ${teamMembers[0].getOffice()}</p>
   </div>
 </div>`;
@@ -12,7 +14,6 @@ function renderManager(teamMembers) {
 
 function renderEngineer(teamMembers) {
   const engineers = teamMembers.filter((obj) => obj.getRole() === "Engineer");
-  console.log(engineers);
   let engString = "";
   engineers.forEach((engineer) => {
     engString += ` <div class="card text-white bg-primary m-3 col-2">
@@ -29,7 +30,7 @@ function renderEngineer(teamMembers) {
 
 function renderIntern(teamMembers) {
   const interns = teamMembers.filter((obj) => obj.getRole() === "Intern");
-  console.log(interns);
+
   let internString = "";
   interns.forEach((intern) => {
     internString += ` <div class="card text-white bg-primary m-3 col-2">

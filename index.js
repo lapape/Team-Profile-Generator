@@ -107,7 +107,6 @@ function askAdd() {
     } else if (data.add === "Intern") {
       askIntern();
     } else {
-      console.log(teamMembers);
       writeToFile("index.html", generateMarkdown(teamMembers));
     }
   });
